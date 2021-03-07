@@ -46,3 +46,9 @@ Cannot use index of elements."""
 import os
 
 print(os.name)
+
+#For loop works on lists, so we always must use range() function for iterating. Range starts at 0, and ends with last number-1!  
+
+#Classes always have a __init__() function (constructor), that is executed automaticly whenever we create the object from this class.
+#Self is a reference to the current instance of the class.
+#functions that belongs to the class are called Methods.
