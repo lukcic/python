@@ -1,6 +1,11 @@
 #Installing pip 
 # $apt install python3-pip
 
+#Libraries & packages
+#module - .py file
+#package -collection of modules, package must contain init.py file
+#library -collection of packages
+
 #Including numers in strings:
 print(f"20 days are {20*24*60} minutes") #f means format, doesn't work in python 2x
 
@@ -21,3 +26,23 @@ elif 2<1:
 else:
     print("Do this.")
 
+#Try-except
+    try:
+        print('Someting')
+
+    except (ValueError):
+        print('Error.')
+
+#Lists:
+#list[""]
+
+#Sets:
+""" Like a list, but without duplicates.
+Cannot use index of elements."""
+#set{""}
+
+#Dictionaries:
+
+import os
+
+print(os.name)
