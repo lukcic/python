@@ -69,3 +69,25 @@ print(mo4)
 for i in mo4:
     print('Bat'+ i)
 
+#####################################################################################################################################
+batwomanRegex = re.compile(r'Ultra(wo)?man')        # ? - dopasowanie opcjonalne
+                                                    # ? - previous atom MAY occur 0 or 1 times, eg. /colou?r/g gives 'color' and 'colour'
+
+mo77 = batwomanRegex.findall("Ultrawoman była pierwsza niż Ultraman.")
+
+print(mo77)
+
+#####################################################################################################################################
+# *       -previous atom MAY occur 0 or more times, eg. /color*/g gives 'colo', 'color' or 'colorrrrrr'
+# 11*0  -1 (second sign) must appear 0 ore more times, so answer: 10, 110, 111110, 11111111111111111111110 etc
+
+haRegex = re.compile('Bua(ha)*ha')                   
+
+mo66 = haRegex.search("Buahahahahaha")
+mo666 = haRegex.findall("Buahahahahaha")
+print(mo66.group())
+print(mo666)
+
+# +       -previous atom MAY occur 1 or more times
+
+
