@@ -15,6 +15,7 @@ user_input = int(input("How many days you want to calculate?"))
 #Defining functions
 #Parameters - variables inside function.
 #Void -empty functions - they don't return any values (value 'None')
+#Hermatisation - packing portion of code in fukction. Generalization - adding a parameter to the function.
 def days_to_seconds (value):
     return print(f"{value} days are {value * 24 * 60 * 60} seconds ") #function may not return anything, it can print text only
     
