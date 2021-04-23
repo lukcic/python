@@ -1,32 +1,69 @@
-
 Regular expressions:
 Used to validate text and search through text.
 
 https://regexr.com
 
-/   /   -search pattern, by default works once 
-/   /g  -makes search/changes many times 
-/bob/   -literal patter
+.     -one any character without \n (re.DOTALL as re.compile() second argument will add \n to . ) 
+\d    -digit from 0 to 9, to ignorecase use re.I as second argument of re.compile() method
+\D    -character , without digits(0-9)
+\w    -word (letters, digits, "_") = [a-zA-Z0-9]
+\W    -any character that isn`t word 
+\s    -white character (space, tab, \n)
+\s    -any character that isn`t white character (space, tab, \n)
 
-atom -the smalles (basic) element of regular expression.
-.       -one any character
-^       -atom is on the beginning of the line
-$       -atom is on the end of the line
-\<      -here new word is beginning
-\>      -here word is ending
-\b      -here is the edge of the word (any new word isn`t beginning here and any word is ending here)
-\B      -here is`t the edge of  the word
-[ab]    -a or b, eg. [AEO]la = Ala, Ela, Ola
-[1-9]   -digits from 1 to 9
 ()      -grouping, eg. /(Bob|Alice) Smith/g
+|       -or sign
 
+Classes:
+[ab]    -a or b, eg. [AEO]la = Ala, Ela, Ola
+[1-9]   -digits from 1 to 9 = (0|1|2|3|4|5)
+[^0-5]  -negative calss = [6-9]
 
+^       -atom is on the beginning of the line, eg. ^9 -string starts with "9"
+$       -atom is on the end of the line, eg. \d+$ -string ends with one or  more digits
+
+.*      -match all (any character 0 ore more times), eg. Name: (.*) Surname: (.*)
+
+Complicated regular expressions can be written using white characters and comments when re.VERBOSE argument of re.compile() is used:
+
+phoneRegex = re.compile(r'((\d{3}|\(\d{3}\))?(\s|-|\.)?\d{3}(\s|-|\.)\d{4}(\s*(ext|x|ext.)\s*\d{2,5})?)')
+
+=
+
+phoneRegex = re.compile(r'''(    
+    (\d{3}|\(\d{3}\))?            # Numer kierunkowy.    
+    (\s|-|\.)?                    # Separator.    
+    \d{3}                         # Pierwsze trzy cyfry.    
+    (\s|-|\.)                     # Separator.    
+    \d{4}                         # Ostatnie cztery cyfry.    
+    (\s*(ext|x|ext.)\s*\d{2,5})?  # Numer wewnętrzny.    
+    )''', re.VERBOSE)
+
+Using more than one re.compile() args:
+someRegexValue = re.compile('foo', re.IGNORECASE | re.DOTALL)
+
+#####################################################################################################################################
+? - optional match, previous group MAY occur 0 or 1 times, eg. /colou?r/g gives 'color' and 'colour'
+Ultra(wo)?man     -returns 'Ultraman' or 'Ultrawoman' 
+
+ *          -previous atom MAY occur 0 or more times, eg. /color*/g gives 'colo', 'color' or 'colorrrrrr'
+11*0        -second sign "1" must appear 0 ore more times, so answer is: 10, 110, 111110, 11111111111111111111110 etc
+
+ +          -previous atom MAY occur 1 or more times 
+ \d+\s\w+   -one or more digits, space, one or more words, eg. "4 birds"
+
+#####################################################################################################################################
 
 Bounds (granice):
 {i}     -atom (previous character) must appear exactly i times, eg. [[:blank:]]{2} matches with exactly 2 blank characters
+(Ha){3} = (Ha)(Ha)(Ha) eg. "HaHaHa"
+
 {i,}    -atom MUST appear at least i times, eg. [[:blank:]]{2,} matches with any sequence of 2 or more blank characters 
+
 {,i}    -atom MUST appear at most i times
+
 {i,j}   -atom MUST apper at least i times and at most j times, eg. xyz{2,4} matches the xy string followed by 2 to 4 the z character
+(Ha){3,5} = ((Ha)(Ha)(Ha))|((Ha)(Ha)(Ha)(Ha))|((Ha)(Ha)(Ha)(Ha)(Ha))
 
 10\{2,4}1 - zero (second sign) must appear at min 2 max 4 times, so answer: 1001, 10001, 100001 
 
@@ -36,12 +73,15 @@ Any email addres:
 Any IP addres:
 "[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}"
 
-List the content of file without comments:
-grep -V ^# [FILENAME]
+Replacing test in Python using regular expressions:
 
-Remove tags from html:
-s/<[^>]*>//g                -will replace any content enclosed in <> by an empty string.
+sub() method of Regex object has 2 paramters:
+1 - string that WILL be replaced in places of matchings 
+2 - string to search in
 
+
+
+'''
 Classes:
 [:alnum:]   -alphanumeric character
 [:alpha:]   -alphabetic character
@@ -60,29 +100,19 @@ Classes:
 Basic and regular expressions???????????
 
 
+/   /   -search pattern, by default works once 
+/   /g  -makes search/changes many times 
+/bob/   -literal patter
+
+atom -the smalles (basic) element of regular expression.
+\<      -here new word is beginning
+\>      -here word is ending
+\b      -here is the edge of the word (any new word isn`t beginning here and any word is ending here)
+\B      -here is`t the edge of  the word
+'''
 
 
 
 
-#####################################################################################################################################
-batwomanRegex = re.compile(r'Ultra(wo)?man')        # ? - dopasowanie opcjonalne
-                                                    # ? - previous atom MAY occur 0 or 1 times, eg. /colou?r/g gives 'color' and 'colour'
-
-mo77 = batwomanRegex.findall("Ultrawoman była pierwsza niż Ultraman.")
-
-print(mo77)
-
-#####################################################################################################################################
-# *       -previous atom MAY occur 0 or more times, eg. /color*/g gives 'colo', 'color' or 'colorrrrrr'
-# 11*0  -1 (second sign) must appear 0 ore more times, so answer: 10, 110, 111110, 11111111111111111111110 etc
-
-haRegex = re.compile('Bua(ha)*ha')                   
-
-mo66 = haRegex.search("Buahahahahaha")
-mo666 = haRegex.findall("Buahahahahaha")
-print(mo66.group())
-print(mo666)
-
-# +       -previous atom MAY occur 1 or more times
 
 
