@@ -55,3 +55,10 @@ print(os.name)
 #Classes always have a __init__() function (constructor), that is executed automaticly whenever we create the object from this class.
 #Self is a reference to the current instance of the class.
 #functions that belongs to the class are called Methods.
+
+
+'''
+Użyte w warunku wartości 0, 0.0 i '' (pusty ciąg tekstowy) są uznawane za False, podczas gdy wszystkie pozostałe są uznawane za True.
+
+Poleceń break  i  continue  można  używać  także  w  pętli for.  Polecenie  continue będzie  kontynuowało  działanie  od  następnej  wartości  licznika  pętli for,  jakby nastąpiło  wykonanie  całej  iteracji  pętli  i  przejście  z  powrotem  na  jej  początek.
+'''
