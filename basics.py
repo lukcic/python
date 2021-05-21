@@ -61,4 +61,24 @@ print(os.name)
 Użyte w warunku wartości 0, 0.0 i '' (pusty ciąg tekstowy) są uznawane za False, podczas gdy wszystkie pozostałe są uznawane za True.
 
 Poleceń break  i  continue  można  używać  także  w  pętli for.  Polecenie  continue będzie  kontynuowało  działanie  od  następnej  wartości  licznika  pętli for,  jakby nastąpiło  wykonanie  całej  iteracji  pętli  i  przejście  z  powrotem  na  jej  początek.
+
+
+# Przyklad przerwania
+
+print("Instrukcja przerwania:")
+for i in range(1, 6):
+    if i == 3:
+        break
+    print("Wewnatrz petli.", i)
+print("Poza petla.")
+
+
+# Przyklad wznawiania
+
+print("\nInstrukcja wznowienia:")
+for i in range(1, 6):
+    if i == 3:
+        continue
+    print("Wewnatrz petli.", i)
+print("Poza petla.")
 '''
